@@ -50,15 +50,15 @@ class HexIntegerField(six.with_metaclass(models.SubfieldBase, models.BigIntegerF
 		else:
 			return super(HexIntegerField, self).db_type(connection)
 
-    def to_python(self, value):
-        if value is None or value == "":
-            return None
-        if isinstance(value, six.string_types):
-            value = int(value, 16)
-        # on postgres only, re-interpret from signed to unsigned
-        if connection.settings_dict["ENGINE"] in postgres_engines:
-            value = struct.unpack("q", struct.pack("Q", value))[0]
-        return value
+	def to_python(self, value):
+		if value is None or value == "":
+			return None
+		if isinstance(value, six.string_types):
+			value = int(value, 16)
+		# on postgres only, re-interpret from signed to unsigned
+		if connection.settings_dict["ENGINE"] in postgres_engines:
+			value = struct.unpack("q", struct.pack("Q", value))[0]
+		return value
 
 	def formfield(self, **kwargs):
 		defaults = {"form_class": HexadecimalField}
