@@ -44,7 +44,11 @@ def _gcm_send(data, content_type):
 	}
 
 	request = Request(SETTINGS["GCM_POST_URL"], data, headers)
-	return urlopen(request).read()
+
+	kwargs = {}
+	if SETTINGS["CUSTOM_ROOT_CA_FILE"] is not None:
+		kwargs["cafile"] = SETTINGS["CUSTOM_ROOT_CA_FILE"]
+	return urlopen(request, **kwargs).read()
 
 
 def _gcm_send_plain(registration_id, data, collapse_key=None, delay_while_idle=False, time_to_live=0):
