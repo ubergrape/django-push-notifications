@@ -44,9 +44,11 @@ def _gcm_send(data, content_type):
 		"Authorization": "key=%s" % (key),
 		"Content-Length": str(len(data)),
 	}
-
+	kwargs = {}
+	if SETTINGS["CUSTOM_ROOT_CA_FILE"] is not None:
+		kwargs["cafile"] = SETTINGS["CUSTOM_ROOT_CA_FILE"]
 	request = Request(SETTINGS["GCM_POST_URL"], data, headers)
-	return urlopen(request).read().decode("utf-8")
+	return urlopen(request, **kwargs).read().decode("utf-8")
 
 
 def _gcm_send_plain(registration_id, data, **kwargs):
