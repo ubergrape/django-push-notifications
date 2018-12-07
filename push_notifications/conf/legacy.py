@@ -100,6 +100,10 @@ class LegacyConfig(BaseConfig):
 		msg = "Setup PUSH_NOTIFICATIONS_SETTINGS properly to send messages"
 		return self._get_application_settings(application_id, "APNS_TOPIC", msg)
 
+	def get_apns_proxy_host(self, application_id=None):
+		msg = "Setup PUSH_NOTIFICATIONS_SETTINGS properly to send messages"
+		return self._get_application_settings(application_id, "APNS_PROXY_HOST", msg)
+
 	def get_apns_host(self, application_id=None):
 		msg = "Setup PUSH_NOTIFICATIONS_SETTINGS properly to send messages"
 		return self._get_application_settings(application_id, "APNS_HOST", msg)
