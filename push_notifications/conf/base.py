@@ -17,6 +17,9 @@ class BaseConfig(object):
 	def get_apns_use_alternative_port(self, application_id=None):
 		raise NotImplementedError
 
+	def get_apns_proxy_host(self, application_id=None):
+		raise NotImplementedError
+
 	def get_fcm_api_key(self, application_id=None):
 		raise NotImplementedError
 

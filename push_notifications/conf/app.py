@@ -359,6 +359,9 @@ class AppConfig(BaseConfig):
 	def get_apns_topic(self, application_id=None):
 		return self._get_application_settings(application_id, "APNS", "TOPIC")
 
+	def get_apns_proxy_host(self, application_id=None):
+		return self._get_application_settings(application_id, "APNS", "PROXY_HOST")
+
 	def get_wns_package_security_id(self, application_id=None):
 		return self._get_application_settings(application_id, "WNS", "PACKAGE_SECURITY_ID")
 

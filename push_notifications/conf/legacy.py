@@ -125,6 +125,14 @@ class LegacyConfig(BaseConfig):
 	def get_apns_topic(self, application_id=None):
 		return self._get_application_settings(application_id, "APNS_TOPIC", self.msg)
 
+	def get_apns_proxy_host(self, application_id=None):
+		msg = "Setup PUSH_NOTIFICATIONS_SETTINGS properly to send messages"
+		return self._get_application_settings(application_id, "APNS_PROXY_HOST", msg)
+
+	def get_apns_proxy_port(self, application_id=None):
+		msg = "Setup PUSH_NOTIFICATIONS_SETTINGS properly to send messages"
+		return self._get_application_settings(application_id, "APNS_PROXY_PORT", msg)
+
 	def get_apns_host(self, application_id=None):
 		return self._get_application_settings(application_id, "APNS_HOST", self.msg)
 

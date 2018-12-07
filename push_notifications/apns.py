@@ -46,7 +46,11 @@ def _apns_create_socket(creds=None, application_id=None):
 	client = apns2_client.APNsClient(
 		creds,
 		use_sandbox=get_manager().get_apns_use_sandbox(application_id),
-		use_alternative_port=get_manager().get_apns_use_alternative_port(application_id)
+		use_alternative_port=get_manager().get_apns_use_alternative_port(
+			application_id
+		),
+		proxy_host=get_manager().get_apns_proxy_host(application_id),
+		proxy_port=get_manager().get_apns_proxy_port(application_id),
 	)
 	client.connect()
 	return client
