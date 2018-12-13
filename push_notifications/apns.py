@@ -38,6 +38,7 @@ def _apns_create_socket(certfile=None, application_id=None):
 			application_id
 		),
 		proxy_host=get_manager().get_apns_proxy_host(application_id),
+		proxy_port=get_manager().get_apns_proxy_port(application_id),
 	)
 	client.connect()
 	return client
