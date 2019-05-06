@@ -75,6 +75,11 @@ def _apns_send(
 	if not notification_kwargs["expiration"]:
 		notification_kwargs["expiration"] = int(time.time()) + 2592000
 
+	collapse_id = kwargs.pop("collapse_id", None)
+
+	if collapse_id:
+		notification_kwargs["collapse_id"] = collapse_id
+
 	priority = kwargs.pop("priority", None)
 	if priority:
 		try:
