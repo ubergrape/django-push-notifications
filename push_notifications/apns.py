@@ -87,7 +87,7 @@ def _apns_send(
 		except ValueError:
 			raise APNSUnsupportedPriority("Unsupported priority %d" % (priority))
 
-	apns_topic = kwargs.pop("apns_topic") or get_manager().get_apns_topic(
+	apns_topic = kwargs.pop("apns_topic", None) or get_manager().get_apns_topic(
 		application_id=application_id)
 
 	if batch:
