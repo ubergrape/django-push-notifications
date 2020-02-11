@@ -97,21 +97,21 @@ def _apns_send(
 
 	notification_kwargs["collapse_id"] = kwargs.pop("collapse_id", None)
 
+	apns_topic = kwargs.pop("apns_topic", None) or get_manager().get_apns_topic(
+		application_id=application_id)
+
 	if batch:
 		data = [apns2_client.Notification(
 			token=rid, payload=_apns_prepare(rid, alert, **kwargs)) for rid in registration_id]
 		# returns a dictionary mapping each token to its result. That
 		# result is either "Success" or the reason for the failure.
 		return client.send_notification_batch(
-			data, get_manager().get_apns_topic(application_id=application_id),
-			**notification_kwargs
+			data, apns_topic, **notification_kwargs
 		)
 
 	data = _apns_prepare(registration_id, alert, **kwargs)
 	client.send_notification(
-		registration_id, data,
-		get_manager().get_apns_topic(application_id=application_id),
-		**notification_kwargs
+		registration_id, data, apns_topic, **notification_kwargs
 	)
 
 
